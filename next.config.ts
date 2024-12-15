@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
+const path = require('path')
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = {
+  experimental: {
+    appDir: true // Garante que o Next.js saiba que estamos usando o App Router
+  },
+  // Adicionando suporte a estrutura dentro de src
+  srcDir: path.join(__dirname, 'src')
+}
