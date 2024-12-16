@@ -2,11 +2,29 @@ module.exports = {
   testEnvironment: 'jsdom', // Simula um navegador no Node.js
   testPathIgnorePatterns: ['/node_modules/', '/.next/'], // Ignora os diretórios node_modules e .next
   collectCoverage: true, // O Jest irá gerar relatorios de cobertura, mostrando quais partes do código foram ou não testadas
-  collectCoverageFrom: ['src/**/*.ts(x)?'], // Especifica quais arquivos devem ser incluídos na análise de cobertura
+  collectCoverageFrom: [
+    'src/**/*.ts(x)?',
+    '!src/app/**',
+    '!src/lib/registry.tsx'
+  ], // Especifica quais arquivos devem ser incluídos na análise de cobertura
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'], // Especifica um arquivo que será executado após o ambiente de teste ser configurado.
   modulePaths: ['<rootDir>/src/'], //Adiciona src como um caminho de módulo base.
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+    '^.+\\.(js|jsx|ts|tsx)$': [
+      'babel-jest',
+      {
+        presets: [
+          [
+            'next/babel',
+            {
+              'preset-react': {
+                runtime: 'automatic'
+              }
+            }
+          ]
+        ]
+      }
+    ]
   }
   // Configura o Jest para transformar arquivos antes de testá-los:
 
